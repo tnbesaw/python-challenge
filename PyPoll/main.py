@@ -50,3 +50,22 @@ winner = max(pollResults, key=pollResults.get)
 print(f'-----------------------------')
 print(f'Winner:              {winner}')
 print(f'-----------------------------')
+
+#
+# format and export results
+#
+output_path = os.path.join("results.txt")
+with open(output_path, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        csvwriter.writerow((' ',))
+        csvwriter.writerow(('Election Results',))
+        csvwriter.writerow((f'-----------------------------',))
+        csvwriter.writerow((f'Total Votes:        {total_votes}',))        
+        csvwriter.writerow((f'-----------------------------',))
+        for key, value in pollResults.items() :
+            pct_vote = str(round(value / total_votes * 100, 4)).rjust(5)
+            csvwriter.writerow(( ( (key + ':').ljust(10) + (str(pct_vote) + '%').ljust(8) + ('(' + str(value) + ')').rjust(10)) ,))
+
+        csvwriter.writerow((f'-----------------------------',))
+        csvwriter.writerow((f'Winner:              {winner}',))
+        csvwriter.writerow((f'-----------------------------',))

@@ -83,3 +83,18 @@ print(f'Total:                         ${tot_value}')
 print(f'Average Change:                ${avg_value}')
 print('Greatest Increase in Profits:  ' + datetime.strftime(max_date,'%b-%Y') + '  $(' + str(round(max_value)) + ')')
 print('Greatest Decrease in Profits:  ' + datetime.strftime(min_date,'%b-%Y') + '  $(' + str(round(min_value)) + ')')   
+
+#
+# format and export results
+#
+output_path = os.path.join("results.txt")
+with open(output_path, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        csvwriter.writerow((f'',))
+        csvwriter.writerow((f'Financial Analysis',))
+        csvwriter.writerow((f'------------------------------------------------------------',))
+        csvwriter.writerow((f'Total Months:                  {cnt_value}',))
+        csvwriter.writerow((f'Total:                         ${tot_value}',))
+        csvwriter.writerow((f'Average Change:                ${avg_value}',))
+        csvwriter.writerow(('Greatest Increase in Profits:  ' + datetime.strftime(max_date,'%b-%Y') + '  $(' + str(round(max_value)) + ')',))
+        csvwriter.writerow(('Greatest Decrease in Profits:  ' + datetime.strftime(min_date,'%b-%Y') + '  $(' + str(round(min_value)) + ')',))   
